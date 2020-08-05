@@ -1,5 +1,5 @@
 <p align="center">
-   <img src=".github/proffy-logo.png" alt="Proffy" width="350"/>
+   <img src=".github/proffy-logo.png" alt="Proffy" width="100%"/>
 </p>
 
 # :page_with_curl: Content
