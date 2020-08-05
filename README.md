@@ -1,5 +1,5 @@
 <p align="center">
-   <img src=".github/proffy-logo.png" alt="Proffy" width="280"/>
+   <img src=".github/proffy-logo.png" alt="Proffy" width="350"/>
 </p>
 
 # :page_with_curl: Content
@@ -66,4 +66,4 @@ Access the application at http://localhost:3000/
 
 # :pencil: License
 
-This project is under the [MIT license](LICENCE).
+This project is under the [MIT license](LICENSE).
