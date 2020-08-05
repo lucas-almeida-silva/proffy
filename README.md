@@ -16,7 +16,7 @@ Proffy is an online teaching platform with the objective of connecting students 
 
 # :computer: Technologies
 
-## 📦 API
+### 📦 API
 
   - Node.js
   - Typescript
@@ -24,7 +24,7 @@ Proffy is an online teaching platform with the objective of connecting students 
   - Knex
   - Express
 
-## :computer: Web Project
+### :computer: Web Project
 
   - React.js
   - Typescript
