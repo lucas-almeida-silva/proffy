@@ -16,13 +16,19 @@ Proffy is an online teaching platform with the objective of connecting students 
 
 # :computer: Technologies
 
-  - React.js
+## 📦 API
+
   - Node.js
   - Typescript
   - SQLite
   - Knex
   - Express
 
+## :computer: Web Project
+
+  - React.js
+  - Typescript
+  
 # :rocket: Features
 
   - Registration of teachers, with indication of the subject and class value per hour
