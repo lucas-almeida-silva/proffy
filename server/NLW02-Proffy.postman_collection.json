@@ -1,0 +1,130 @@
+{
+	"info": {
+		"_postman_id": "62ac7c48-f8e4-4697-a9eb-ce89cab8adfe",
+		"name": "NLW02-Proffy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Classes",
+			"item": [
+				{
+					"name": "Create Class",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Lucas Almeida\",\r\n    \"avatar\": \"https://avatars2.githubusercontent.com/u/52322473?s=460&u=3a4051c3f2b67372942f93c4b09ea28e5fe08a44&v=4\",\r\n    \"whatsapp\": \"11960766270\",\r\n    \"bio\": \"O contador de histórias\",\r\n    \"subject\": \"História\",\r\n    \"cost\": 80,\r\n    \"schedule\": [\r\n        {\"week_day\": 1, \"from\": \"08:00\", \"to\": \"12:00\"},\r\n        {\"week_day\": 3, \"from\": \"10:00\", \"to\": \"18:00\"},\r\n        {\"week_day\": 4, \"from\": \"08:00\", \"to\": \"12:00\"}\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/classes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"classes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Classes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3333/classes?week_day=1&subject=História&time=9:00",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"classes"
+							],
+							"query": [
+								{
+									"key": "week_day",
+									"value": "1"
+								},
+								{
+									"key": "subject",
+									"value": "História"
+								},
+								{
+									"key": "time",
+									"value": "9:00"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Connections",
+			"item": [
+				{
+					"name": "Create Connection",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/connections",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"connections"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Total Connections",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3333/connections",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"connections"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

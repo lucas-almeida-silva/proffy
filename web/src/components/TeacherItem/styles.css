@@ -77,7 +77,7 @@
 
 @media(min-width: 700px) {
   .teacher-item header,
-  .teacher-tem footer {
+  .teacher-item footer {
     padding: 3.2rem;
   }
 
