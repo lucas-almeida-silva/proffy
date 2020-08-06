@@ -1,12 +1,13 @@
 import React, { useState, FormEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import PageHeader from '../../components/PageHeader';
 import Input from '../../components/Input';
 import TextArea from '../../components/TextArea';
 import Select from '../../components/Select';
+import Loader from '../../components/Loader';
 
 import warningIcon from '../../assets/images/icons/warning.svg';
 
@@ -17,6 +18,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function TeacherForm() {
   const history = useHistory();
+
+  const [loader, setLoader] = useState(false);
 
   const [name, setName] = useState('');
   const [avatar, setAvatar] = useState('');
@@ -51,22 +54,27 @@ function TeacherForm() {
 
   function handleCreateClass(e: FormEvent) {
     e.preventDefault();
-    
-    api.post('classes', {
-      name,
-      avatar,
-      whatsapp,
-      bio,
-      subject,
-      cost: Number(cost),
-      schedule: scheduleItems
-    }).then(() => {
-      toast.success('Cadastro realizado com sucesso!');
-      
-      history.push('/');
-    }).catch(() => {
-      toast.error('Ocorreu um erro no cadastro');
-    })
+
+    setLoader(true);
+
+    setTimeout(() => {
+      api.post('classes', {
+        name,
+        avatar,
+        whatsapp,
+        bio,
+        subject,
+        cost: Number(cost),
+        schedule: scheduleItems
+      }).then(() => {
+        toast.success('Cadastro realizado com sucesso!');
+        history.push('/');
+      }).catch(() => {
+        toast.error('Ocorreu um erro no cadastro');
+      }).finally(() => {
+        setLoader(false)
+      });
+    }, 600);  
   }
 
   return (
@@ -196,8 +204,8 @@ function TeacherForm() {
           </footer>
         </form>
       </main>
+      {loader && <Loader /> }
 
-      <ToastContainer autoClose={3500}/>
     </div>
   )
 }
