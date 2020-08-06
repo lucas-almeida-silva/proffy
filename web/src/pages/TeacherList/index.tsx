@@ -4,32 +4,44 @@ import PageHeader from '../../components/PageHeader';
 import TeacherItem, { Teacher } from '../../components/TeacherItem';
 import Input from '../../components/Input';
 import Select from '../../components/Select';
+import Loader from '../../components/Loader';
+
+import { toast } from 'react-toastify';
 
 import api from '../../services/api';
 
 import './styles.css';
 
 function TeacherList() {
+  const [loader, setLoader] = useState(false);
+
   const [teachers, setTeachers] = useState([]);
 
   const [subject, setSubject] = useState('');
   const [week_day, setWeekDay] = useState('');
   const [time, setTime] = useState('');
 
-  async function searchTeachers(e: FormEvent) {
+  function searchTeachers(e: FormEvent) {
     e.preventDefault();
+    setLoader(true);
 
-    const response = await api.get('classes', {
-      params: {
-        subject,
-        week_day,
-        time
+    setTimeout(async () => {
+      try {
+        const response = await api.get('classes', {
+          params: {
+            subject,
+            week_day,
+            time
+          }
+        });
+
+        setTeachers(response.data);
+      } catch(err) {
+        toast.error('Não foi possível realizar a busca');
+      } finally {
+        setLoader(false);
       }
-    });
-
-    setTeachers(response.data);
-
-    console.log(response.data);
+    }, 300); 
   }
 
   return (
@@ -91,6 +103,8 @@ function TeacherList() {
           return <TeacherItem key={teacher.id} teacher={teacher} />
         })}
       </main>
+
+      {loader && <Loader /> }
     </div>
   )
 }
