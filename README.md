@@ -28,6 +28,7 @@ Proffy is an online teaching platform with the objective of connecting students 
 
   - React.js
   - Typescript
+  - Axios
 
 ### :iphone: Mobile
 
