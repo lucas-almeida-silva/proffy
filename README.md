@@ -7,7 +7,7 @@
 * [About](#information_source-about)
 * [Technologies](#computer-technologies)
 * [Features](#rocket-features)
-* [How to run](#seeding-how-to-run)
+* [How to run](#seedling-how-to-run)
 * [License](#pencil-license)
 
 # :information_source: About
