@@ -2,7 +2,7 @@
    <img src=".github/proffy-logo.png" alt="Proffy" width="100%"/>
 </p>
 
-# :page_with_curl: Content
+# :page_with_curl: Table of Contents
 
 * [About](#information_source-about)
 * [Technologies](#computer-technologies)
@@ -24,17 +24,29 @@ Proffy is an online teaching platform with the objective of connecting students 
   - Knex
   - Express
 
-### :computer: Web Project
+### :computer: Web
 
   - React.js
   - Typescript
+
+### :iphone: Mobile
+
+  - React Native
+  - Expo
   
 # :rocket: Features
 
+### Web
+
   - Registration of teachers, with indication of the subject and class value per hour
-  - List  of available teachers and their subjects
+  - List of available teachers and their subjects
   - Search teachers filtering by subject, day of the week and time
-  - Contact teachers
+  - Contact teachers by WhatsApp
+
+### Mobile
+
+  - Search teachers filtering by subject, day of the week and time and contact
+  - Favorite teachers
 
 # :seedling: How to run
 
@@ -69,6 +81,20 @@ $ npm install
 $ npm start
 ```
 Access the application at http://localhost:3000/
+
+### :iphone: Run Mobile Project
+
+```bash
+# Go to web folder
+$ cd proffy/mobile
+
+# Install Dependencies
+$ yarn install
+
+# Run Aplication
+$ yarn start
+```
+Install the Expo app on mobile stores. Then, select the LAN option in the window that opened after running the application and scan the QR Code in the Expo app.
 
 # :pencil: License
 
