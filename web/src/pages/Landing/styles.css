@@ -104,6 +104,7 @@
 
 .total-connections {
   font-size: 1.4rem;
+  color: var(--color-text-complement);
   padding-top: 0.2rem;
   display: flex;
   align-items: center;
