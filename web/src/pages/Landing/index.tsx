@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import logoImg from '../../assets/images/logo.svg';
 import landingImg from '../../assets/images/landing.svg';
 
 import studyIcon from '../../assets/images/icons/study.svg';
@@ -11,6 +10,8 @@ import purpleHeartIcon from '../../assets/images/icons/purple-heart.svg';
 import api from '../../services/api';
 
 import './styles.css';
+import Logo from '../../components/Logo';
+import PageHeader from '../../components/PageHeader';
 
 function Landing() {
   const [totalConnections, setTotalConnections] = useState(0);
@@ -24,18 +25,31 @@ function Landing() {
   }, []);
 
   return (
-    <div id="page-landing">
-      <div id="page-landing-content" className="container">
-        <div className="logo-container">
-          <img src={logoImg} alt="Proffy" />
-          <h2>Sua plataforma de estudos online.</h2>
-        </div>
+    <div id="page-landing" className="container">
+      <div id="page-landing-content">
+        <header className="page-landing-header">
+          <div className="header-container">
+            <Logo />
 
-        <img
-          src={landingImg}
-          alt="Plataforma de estudos"
-          className="hero-image"
-        />
+            <img
+              src={landingImg}
+              alt="Plataforma de estudos"
+              className="hero-image"
+            />
+          </div>
+          
+          
+        </header>
+
+        <footer className="page-landing-footer">
+
+        <div className="footer-container">
+          
+        
+        <p className="welcome-message">
+          Seja bem vindo!
+          <strong>O que deseja fazer?</strong>
+        </p>
 
         <div className="buttons-container">
           <Link to="/study" className="study">
@@ -49,11 +63,25 @@ function Landing() {
           </Link>
         </div>
 
-        <span className="total-connections">
-          Total de {totalConnections} conexões já realizadas <img src={purpleHeartIcon} alt="Coração roxo"></img>
-        </span>
+          {/* <p className="total-connections">
+            Total de {totalConnections} conexões já realizadas
+            <img src={purpleHeartIcon} alt="Coração Roxo" />
+          </p> */}
+
+        <div className="total-connections">
+          <span>
+            Total de {totalConnections} conexões já realizadas 
+            <img src={purpleHeartIcon} alt="Coração roxo"></img>
+          </span>
+        </div>
+
+        </div>
+
+        </footer>
+        
       </div>
     </div>
+        
   )
 }
 
