@@ -46,6 +46,7 @@
 .welcome-message {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   margin-bottom: 3rem;
   font: 500 2rem Poppins;
   color: var(--color-text-base);
@@ -119,9 +120,8 @@
   }
 
   .welcome-message {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    max-width: 610px;
+    margin: 0 auto 3rem;
   }
 
 }
@@ -179,11 +179,8 @@
 
   .welcome-message {
     grid-area: welcome;
-
-    display: flex;
-    align-self: center;
-    align-items: flex-start;
-    justify-content: flex-start;
+    margin-bottom: 0;
+    justify-content: center;
   }
 
   .buttons-container {
