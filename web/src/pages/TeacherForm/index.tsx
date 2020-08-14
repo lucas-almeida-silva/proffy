@@ -150,8 +150,8 @@ function TeacherForm() {
             <legend>
               Horários disponíveis
               <button type="button" onClick={addNewScheduleItem}>
-              + Novo horário
-            </button>
+                + Novo horário
+              </button>
             </legend>
             
             {scheduleItems.map((scheduleItem, index) => {

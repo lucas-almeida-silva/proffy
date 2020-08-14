@@ -1,0 +1,63 @@
+.input-container {
+  position: relative;
+}
+
+.input-container label {
+  position: absolute;
+  font-size: 1.6rem;
+  color: var(--color-text-complement);
+  left: 2.2rem;
+  bottom: 1.8rem;
+  
+  transform-origin: 0% 30%;
+  transition: .1s ease-in-out;
+}
+
+.input-container input {
+  width: 100%;
+  height: 6.5rem;
+  border-top-left-radius: 0.8rem;
+  border-top-right-radius: 0.8rem;
+  background: var(--color-input-background);
+  border: 1px solid var(--color-line-in-white);
+  outline: 0;
+  padding: 2rem 2.2rem 0;
+  font: 1.6rem Poppins;
+}
+
+.input-container + .input-container input {
+  margin-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.input-container + :not(input-container) input {
+  border-bottom-left-radius: 0.8rem;
+  border-bottom-right-radius: 0.8rem;
+}
+
+.input-container:focus-within::after {
+  position: absolute;
+  content: '';
+  background: var(--color-primary-light);
+  border-radius: 8px;
+  left: 0;
+  top: 1.2rem;
+  bottom: 1rem;
+  height: calc(100% - 2.2rem);
+  width: .2rem;
+}
+
+.input-container .password-input {
+  position: absolute;
+  right: 2rem;
+  top: 1.2rem;
+  border: 0;
+  background: none;
+  outline: none;
+}
+
+.float-label {
+  transform: scale(.7) translateY(-1.6rem);
+}
+
