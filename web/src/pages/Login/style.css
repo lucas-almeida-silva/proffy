@@ -20,7 +20,7 @@
 }
 
 #auth-base-page .auth-base-page-content .actions a{
-  font: 500 1.4rem Poppins;
+  font: 400 1.4rem Poppins;
   color: var(--color-text-complement);
   text-decoration: none;
 
@@ -36,7 +36,7 @@
   align-items: center;
   justify-content: space-between;
   margin-top: 3.2rem;
-  font: 500 1.6rem Poppins;
+  font: 400 1.6rem Poppins;
   position: absolute;
   top: 85%;
   width: 85%;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Children } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { InputProps } from '../Input/index';
 
@@ -34,7 +34,8 @@ const InputAuthentication: React.FC<InputPropsAuthentication> = ({ name, label, 
         type={type === 'password' && visiblePassword ? 'text' : type} 
         {...rest}
         onFocus={()=> setInputFocused(true)} 
-        onBlur={() => setInputFocused(false)} 
+        onBlur={() => setInputFocused(false)}
+        {...(type === 'password' && {autoComplete: "off"})}
       />    
         
       {type === 'password' && (

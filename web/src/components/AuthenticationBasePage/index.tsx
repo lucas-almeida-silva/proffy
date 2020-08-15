@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 interface AuthenticationProps {
   header: {title: string, description?: string},
   buttonLabel: string;
-  goBackUrl?: string;
+  backButton: boolean;
   onSubmit(): any;
 }
 
@@ -19,14 +19,14 @@ const AuthenticationBasePage: React.FC<AuthenticationProps> = (props) => {
       <LogoBanner />
       
       <div className="auth-base-page-container">
-        {props.goBackUrl && (
-          <Link to={props.goBackUrl} className="back-arrow">
+        {props.backButton && (
+          <Link to="/login" className="back-arrow">
             <img src={backIcon} alt="Voltar" />
           </Link>
         )}
         <div className="auth-base-page-content">
           <header className="header-container">
-            <strong>{props.header.title}</strong>
+            <h1>{props.header.title}</h1>
             {props.header.description && <p>{props.header.description}</p>}
           </header>
 

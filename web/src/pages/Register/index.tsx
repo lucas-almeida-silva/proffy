@@ -1,27 +1,39 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 import InputAuthentication from '../../components/InputAuthentication';
-import CheckBox from '../../components/CheckBox';
-
-import purpleHeartIcon from '../../assets/images/icons/purple-heart.svg';
-
-import './style.css';
 import AuthenticationBasePage from '../../components/AuthenticationBasePage';
 
-function Login() {
+import './styles.css';
+
+function Register() {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   return (
-    <div id="page-login">
+    <div id="page-register">
       <AuthenticationBasePage 
-        header={{title: 'Fazer login'}} 
-        buttonLabel='Entrar' 
-        backButton={false}
+        header={{title: 'Cadastro', description: 'Preencha os dados abaixo para começar.'}} 
+        buttonLabel='Concluir cadastro'
+        backButton={true}
         onSubmit={() => console.log('submited')}>
 
           <div className="fields-container">
+            <InputAuthentication 
+              type="text" 
+              label="Nome" 
+              name="firstName" 
+              value={firstName} 
+              onChange={(e) => setFirstName(e.target.value)} 
+            />
+            <InputAuthentication 
+              type="text" 
+              label="Sobrenome" 
+              name="lastName" 
+              value={lastName} 
+              onChange={(e) => setLastName(e.target.value)} 
+            />
             <InputAuthentication 
               type="text" 
               label="E-mail" 
@@ -37,27 +49,9 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)} 
             />
           </div>
-
-          <div className="actions">
-            <CheckBox name="remember-me" label="Lembrar-me" />
-            <Link to="/forgot-password">
-              Esqueci minha senha
-            </Link>
-          </div>
-
-          <footer>
-            <p>
-              Não tem uma conta?
-              <Link to="/register">Cadastre-se</Link>
-            </p>
-            <span>
-              É de graça
-              <img src={purpleHeartIcon} alt="Coração roxo"/>
-            </span>
-          </footer>
       </AuthenticationBasePage>    
     </div>
   );
 }
 
-export default Login;
+export default Register;

@@ -7,7 +7,7 @@
 }
 
 .checkbox-block span {
-  font: 500 1.4rem Poppins;
+  font: 400 1.4rem Poppins;
   color: var(--color-text-complement) !important;
   margin-left: 1rem;
   transition: .2s;

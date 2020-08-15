@@ -11,6 +11,7 @@
 #auth-base-page .auth-base-page-container {
   width: 85%;
   margin: 0 auto;
+  padding-bottom: 3.2rem;
 }
 
 #auth-base-page .auth-base-page-content {
@@ -27,25 +28,26 @@
 
 #auth-base-page .auth-base-page-content .header-container {
   width: 100%;
-  margin: 3.4rem 0 3.6rem;
+  margin-bottom: 3rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
 }
 
-#auth-base-page .auth-base-page-content .header-container strong {
-  font: 600 2.4rem Poppins;
-  line-height: 3.4rem;
+#auth-base-page .auth-base-page-content .header-container h1 {
+  font: 600 3.6rem Poppins;
+  line-height: 4.6rem;
   color: var(--color-text-title);
+  margin-top: 2rem;
 }
 
 #auth-base-page .auth-base-page-content .header-container p {
-  max-width: 22rem;
   font-size: 1.6rem;
   line-height: 2.6rem;
   color: var(--color-text-base);
   margin-top: 1rem;
+  max-width: 100%;
 }
 
 #auth-base-page .auth-base-page-content main {
@@ -65,8 +67,9 @@
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  outline: none;
   transition: background-color 0.2s;
-  margin-top: 3rem;
+  margin-top: 4.2rem;
   transition: .2s;
 }
 
@@ -93,16 +96,22 @@
   #auth-base-page .auth-base-page-container {
     width: 70%;
     height: 100vh;
+    padding: 0;
     grid-area: content;
   }
 
-  #auth-base-page .auth-base-page-content .header-container strong {
+  #auth-base-page .auth-base-page-content .header-container {
+    margin-bottom: 3.6rem;
+  }
+
+  #auth-base-page .auth-base-page-content .header-container h1 {
     font-size: 3.6rem;
+    margin-top: 0;
   }
 
   #auth-base-page .auth-base-page-container .back-arrow {
     position: absolute;
-    top: 6%;
+    top: 1.2rem;
   }
 
   #auth-base-page .auth-base-page-content main footer {

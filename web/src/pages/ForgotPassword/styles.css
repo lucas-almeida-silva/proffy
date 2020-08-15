@@ -1,0 +1,12 @@
+#page-forgot-password {
+  width: 100vw;
+  height: 100vh;
+}
+
+#page-forgot-password .header-container h1 {
+  max-width: 30rem;
+}
+
+#page-forgot-password .button-submit {
+  margin-top: 3rem !important;
+}
