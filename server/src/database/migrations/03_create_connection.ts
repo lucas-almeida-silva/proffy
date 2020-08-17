@@ -4,10 +4,10 @@ export async function up(knex: Knex) {
   return knex.schema.createTable('connections', table => {
     table.increments('id').primary();
     
-    table.integer('user_id')
+    table.integer('teacher_id')
       .notNullable()
       .references('id')
-      .inTable('users')
+      .inTable('teachers')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
 

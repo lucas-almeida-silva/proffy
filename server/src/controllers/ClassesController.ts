@@ -35,16 +35,16 @@ export default class ClassesController {
           .whereRaw('`class_schedule`.`to` > ??', [timeInMinutes])
       })
       .where('classes.subject', '=', subject)
-      .join('users', 'classes.user_id', '=', "users.id")
-      .select(["classes.*", "users.*"]);
+      .join('teachers', 'classes.teacher_id', '=', 'teachers.id')
+      .join('users', 'teachers.user_id', '=', 'users.id')
+      .select(['classes.*', 'users.first_name', 'users.last_name', 'teachers.bio', 'teachers.whatsapp']);
 
     return response.send(classes);
   }
   
   async create(request: Request, response: Response) {
     const {
-      name,
-      avatar,
+      user_id,
       whatsapp,
       bio,
       subject,
@@ -55,19 +55,18 @@ export default class ClassesController {
     const trx = await db.transaction();
   
     try {
-      const insertedUsersIds = await trx('users').insert({
-        name,
-        avatar,
-        whatsapp,
-        bio
+      const insertedTeachersIds = await trx('teachers').insert({
+        user_id,
+        bio,
+        whatsapp
       });
-    
-      const user_id = insertedUsersIds[0];
+
+      const teacher_id = insertedTeachersIds[0];
     
       const insertedClassesIds = await trx('classes').insert({
         subject,
         cost,
-        user_id
+        teacher_id
       });
     
       const class_id = insertedClassesIds[0];

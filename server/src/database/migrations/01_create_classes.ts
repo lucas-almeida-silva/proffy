@@ -6,10 +6,10 @@ export async function up(knex: Knex) {
     table.string('subject').notNullable();
     table.decimal('cost').notNullable();
 
-    table.integer('user_id')
+    table.integer('teacher_id')
       .notNullable()
       .references('id')
-      .inTable('users')
+      .inTable('teachers')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
   });
