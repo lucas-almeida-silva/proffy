@@ -75,20 +75,22 @@ export default class AuthController {
       return response.status(200).send({message: 'Email successfully sent'})
 
     } catch(err) {
-      return response.status(400).send({error: 'Erro on forgot password, try again'});
+      return response.status(400).send({error: 'Error on forgot password, try again'});
     }
   }
 
   async resetPassword(request: Request, response: Response) {
     const { token, password } = request.body;
+
     try {
       const user = await db('users').where('passwordResetToken', token);
 
-      if(!user.length || token != user[0].passwordResetToken) {
+      if(!user.length) {
         return response.status(400).send({error: 'Token invalid'});
       }
-      
+
       const now = new Date();
+
       if(now > user[0].passwordResetExpires) {
         return response.status(400).send({error: 'Token expired, please generate a new one'});
       }
