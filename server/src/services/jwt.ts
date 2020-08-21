@@ -1,4 +1,4 @@
-import jwt, { JsonWebTokenError } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import jwtConfig from '../config/jwtConfig';
 
 export default function generateToken(payload: any) {

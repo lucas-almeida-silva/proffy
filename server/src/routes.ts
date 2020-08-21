@@ -12,7 +12,7 @@ const classesConstroller = new ClassesController();
 const connectionsController = new ConnectionsController();
 const usersController = new UserController();
 
-routes.post('/users', usersController.create);
+routes.post('/users/register', usersController.create);
 
 routes.post('/login', authController.login);
 routes.post('/forgot-password', authController.forgotPassword);

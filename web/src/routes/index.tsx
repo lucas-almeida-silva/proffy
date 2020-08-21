@@ -27,7 +27,7 @@ function Routes() {
 
   return (
     <BrowserRouter>
-      <Route path='/' component={Landing} exact/> 
+      <Route path='/' component={Landing} exact isPrivate/> 
       <Route path='/login' component={Login}/> 
       <Route path='/register' component={Register} exact/> 
       <Route path='/register/success' component={SuccessRegister} />

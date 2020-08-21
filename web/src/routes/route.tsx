@@ -6,37 +6,14 @@ interface CustomRouteProps extends RouteProps {
   isPrivate?: boolean;
 }
 
-const CustomRoute: React.FC<CustomRouteProps> = ({ isPrivate, path, ...rest }) => {
+const CustomRoute: React.FC<CustomRouteProps> = ({ isPrivate, ...rest }) => {
   const { signed } = useAuth();
-  
+
   if (!signed && isPrivate) {
     return <Redirect to="/login" />
   }
 
-  return <Route path={path} {...rest} />
+  return <Route {...rest} />
 }
 
 export default CustomRoute;
-
-// interface routesProps extends RouteProps{
-//   isPrivate?:boolean
-//   component:React.ComponentType
-// }
-
-// const RouteWrapper:React.FC<routesProps> =({isPrivate=false,component:Component,...rest})=>{
-
-//   const {signed} = useAuth();
-
-//   return (
-//       <Route {...rest} render={() =>{
-//           return isPrivate === signed ?(
-//               <Component />
-//           ):(
-//               <Redirect to={{pathname: isPrivate ? '/' : '/home'}} />
-//           )
-//       }                     
-//       } />
-//   )
-// }
-
-// export default RouteWrapper

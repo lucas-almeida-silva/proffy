@@ -13,11 +13,11 @@ export default class AuthController {
       const user = await db('users').where('users.email', email);
 
       if(!user.length) {
-        response.status(400).send({error: 'User not found'});
+        return response.status(400).send({error: 'User not found'});
       }
 
       if(!(await bcrypt.compare(password, user[0].password))) {
-        response.status(400).send({error: 'Invalid password'});
+        return response.status(400).send({error: 'Invalid password'});
       }
 
       const token = generateToken({id: user[0].id});
@@ -41,7 +41,7 @@ export default class AuthController {
     const { email } = request.body;
 
     try {
-      const user = await db('users').where('email', email);
+      const user = await db('users').where('users.email', email);
 
       if(!user.length) {
         return response.status(400).send({error: 'User not found'});
@@ -75,6 +75,7 @@ export default class AuthController {
       return response.status(200).send({message: 'Email successfully sent'})
 
     } catch(err) {
+      console.log(err);
       return response.status(400).send({error: 'Error on forgot password, try again'});
     }
   }
