@@ -1,17 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 
+import AuthenticationBasePage from '../../components/AuthenticationBasePage';
 import InputAuthentication from '../../components/InputAuthentication';
 import CheckBox from '../../components/CheckBox';
+
+import { useAuth } from '../../contexts/auth';
 
 import purpleHeartIcon from '../../assets/images/icons/purple-heart.svg';
 
 import './style.css';
-import AuthenticationBasePage from '../../components/AuthenticationBasePage';
 
 function Login() {
+  const { signIn } = useAuth();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [keepConnected, setKeepConnected] = useState(false);
+
+  async function handleLogin(e: FormEvent) {
+    e.preventDefault();
+
+    signIn(email, password);
+  }
 
   return (
     <div id="page-login">
@@ -19,7 +30,7 @@ function Login() {
         header={{title: 'Fazer login'}} 
         buttonLabel='Entrar' 
         backButton={false}
-        onSubmit={() => console.log('submited')}>
+        onSubmit={handleLogin}>
 
           <div className="fields-container">
             <InputAuthentication 
@@ -39,7 +50,12 @@ function Login() {
           </div>
 
           <div className="actions">
-            <CheckBox name="remember-me" label="Lembrar-me" />
+            <CheckBox 
+              name="remember-me" 
+              label="Lembrar-me"
+              // {...(keepConnected && {checked: true})} 
+              // onClick={() => setKeepConnected(!keepConnected)}
+            />
             <Link to="/forgot-password">
               Esqueci minha senha
             </Link>

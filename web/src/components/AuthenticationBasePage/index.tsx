@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FormEvent } from 'react';
 import LogoBanner from '../LogoBanner';
 
 import backIcon from '../../assets/images/icons/back-purple.svg';
@@ -10,7 +10,7 @@ interface AuthenticationProps {
   header: {title: string, description?: string},
   buttonLabel: string;
   backButton: boolean;
-  onSubmit(): any;
+  onSubmit(e: FormEvent): any;
 }
 
 const AuthenticationBasePage: React.FC<AuthenticationProps> = (props) => {

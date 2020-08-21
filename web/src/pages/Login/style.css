@@ -62,18 +62,18 @@
 }
 
 @media (min-width: 700px) {
-  #auth-base-page {
-    grid-template-areas: "banner content" !important;
+  #page-login #auth-base-page {
+    grid-template-areas: "banner content";
   }
 
-  #auth-base-page .auth-base-page-content main footer {
+  #page-login #auth-base-page .auth-base-page-content main footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 0;
   }
 
-  #auth-base-page .auth-base-page-content main footer {
+  #page-login #auth-base-page .auth-base-page-content main footer {
     max-width: 31%;
   }
 }

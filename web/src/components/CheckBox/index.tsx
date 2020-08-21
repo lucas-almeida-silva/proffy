@@ -7,7 +7,7 @@ import { InputProps } from '../Input';
 const CheckBox: React.FC<InputProps> = ({label, name, ...rest}) => {
   return (
     <label className="checkbox-block">
-      <input id={name} type="checkbox" />
+      <input id={name} type="checkbox" {...rest} />
       <span>{label}</span>
   </label>
   );

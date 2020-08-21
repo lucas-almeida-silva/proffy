@@ -3,16 +3,21 @@ import { Link } from 'react-router-dom';
 
 import Logo from '../../components/Logo';
 
+import { useAuth } from '../../contexts/auth';
+
 import landingImg from '../../assets/images/landing.svg';
 import studyIcon from '../../assets/images/icons/study.svg';
 import giveClassesIcon from '../../assets/images/icons/give-classes.svg';
 import purpleHeartIcon from '../../assets/images/icons/purple-heart.svg';
+import signOutIcon from '../../assets/images/icons/logout.svg';
+import avatarDefaultImg from '../../assets/images/avatar-default.png';
 
 import api from '../../services/api';
 
 import './styles.css';
 
 function Landing() {
+  const { user, signOut } = useAuth();
   const [totalConnections, setTotalConnections] = useState(0);
 
   useEffect(() => {
@@ -23,22 +28,40 @@ function Landing() {
     })
   }, []);
 
+  function handleSignOut() {
+    signOut();
+  }
+
   return (
     <div id="page-landing" className="container">
-      <div id="page-landing-content">
-        <header className="page-landing-header">
-          <div className="header-container">
-            <Logo />
+      <div className="page-landing-top">
+        <div className="page-landing-top-content">
+        <header>
+          <div className="user-info">
+            <img src={avatarDefaultImg} alt="Avatar usuário" />
+            <span>{`${user?.first_name} ${user?.last_name}`}</span>
+          </div>
+              
+          <button onClick={handleSignOut}>
+            <img src={signOutIcon} alt="Logout" />
+          </button>
+            
+          
+        </header>
 
+        <div className="logo-content">
+          <Logo />
             <img
               src={landingImg}
               alt="Plataforma de estudos"
               className="hero-image"
             />
           </div>
-        </header>
+        </div>
+      </div>
+        
 
-        <footer className="page-landing-footer">
+      <footer className="page-landing-footer">
           <div className="footer-container">
             <p className="welcome-message">
               Seja bem vindo!
@@ -67,7 +90,6 @@ function Landing() {
           </div>
         </footer>
       </div>
-    </div>        
   );
 }
 

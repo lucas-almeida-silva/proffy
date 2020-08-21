@@ -5,31 +5,74 @@
   color: var(--color-text-in-primary);
 }
 
-.page-landing-header {
+.page-landing-top {
   width: 100%;
   height: 60vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   background: var(--color-primary);
 }
 
-.header-container {
+.page-landing-top header {
+  width: 85%;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 2rem;
+  margin: 0 auto 2rem;
+}
+
+.page-landing-top header .user-info {
+  display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.header-container,
-.footer-container {
+.page-landing-top header .user-info img {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+}
+
+.page-landing-top header .user-info span {
+  margin-left: 2rem;
+  font: 500 1.6rem Poppins;
+  color: var(--color-text-in-primary);
+}
+
+.page-landing-top header button{
+  background-color: var(--color-primary-darker);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.2rem;
+  height: 4.2rem;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  outline: none;
+  margin: 0;
+}
+
+.page-landing-top header button img{
+  width: 2.5rem;
+  height: 5rem;
+  border-radius: 50%;
+}
+
+.page-landing-top .logo-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem auto 0;
   width: 85%;
 }
 
-.hero-image {
-  width: 100%;
-  height: 35vh;
+.page-landing-top .logo-content .logo-container h2 {
+  max-width: 100%;
+}
+
+.page-landing-top .logo-content .hero-image {
+  height: 30vh;
 }
 
 .page-landing-footer {
@@ -42,6 +85,10 @@
 
   color: var(--color-text-in-primary);
 }
+
+.footer-container {
+  width: 85%;
+} 
 
 .welcome-message {
   display: flex;
@@ -125,14 +172,37 @@
     margin: 0 auto 3rem;
   }
 
+  .page-landing-top .logo-content {
+    margin-top: -1rem;
+  }
+
+  .page-landing-top .logo-content .logo-container img {
+    height: 7rem;
+  }
+
+  .page-landing-top .logo-content .logo-container h2 {
+    line-height: 2.6rem;
+    font-size: 2.2rem;
+    max-width: 40rem;
+  }
+
+  .page-landing-top .logo-content .hero-image {
+    height: 30vh;
+  }
 }
 
 @media (min-width: 1100px) {
-  .header-container, .footer-container {
+  /* .header-container, .footer-container {
     max-width: 1100px;
+  } */
+
+  .page-landing-top-content,
+  .footer-container {
+    max-width: 1100px;
+    margin: 0 auto;
   }
 
-  .page-landing-header {
+  .page-landing-top {
     height: 65vh;
   }
 
@@ -140,11 +210,16 @@
     height: 35vh;
   }
 
-  .header-container {
+  .page-landing-top header {
+    width: 95%
+  }
+
+  .page-landing-top .logo-content {
     display: grid;
     grid-template-rows: 350px;
     grid-template-columns: 2fr 2fr;
-  }
+    width: 95%
+  } 
 
   #page-landing .logo-container img {
     height: 100% !important;
@@ -156,8 +231,8 @@
     max-width: 40rem !important;
   }
 
-  .hero-image {
-    height: 100vh;
+  .page-landing-top .logo-content .hero-image {
+    height: 45vh;
     justify-self: end;
   }
 
@@ -170,12 +245,13 @@
     display: grid;
     grid-template-columns: 1fr 1fr 2fr;
     grid-template-areas: "welcome total buttons";
+    width: 95%;
   }
 
   .welcome-message {
     grid-area: welcome;
-    margin-bottom: 0;
     justify-content: center;
+    margin-bottom: 0;
   }
 
   .buttons-container {
