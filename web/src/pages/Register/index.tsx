@@ -17,19 +17,21 @@ function Register() {
 
   const history = useHistory();
 
-  function handleRegister(e: FormEvent) {
+  async function handleRegister(e: FormEvent) {
     e.preventDefault();
-    
-    api.post('users/register', {
-      first_name,
-      last_name,
-      email,
-      password
-    }).then(() => {
+
+    try {
+      await api.post('users/register', {
+        first_name,
+        last_name,
+        email,
+        password
+      });
+
       history.push('register/success');
-    }).catch(() => {
+    } catch(err) {
       toast.error('Ocorreu um erro ao realizar o cadastro');
-    })
+    }
   }
 
   return (

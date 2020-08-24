@@ -38,7 +38,7 @@ function Landing() {
         <div className="page-landing-top-content">
         <header>
           <div className="user-info">
-            <img src={avatarDefaultImg} alt="Avatar usuário" />
+            <img src={user?.avatar || avatarDefaultImg} alt="Avatar usuário" />
             <span>{`${user?.first_name} ${user?.last_name}`}</span>
           </div>
               

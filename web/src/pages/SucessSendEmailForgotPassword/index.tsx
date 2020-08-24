@@ -5,7 +5,7 @@ function SuccessSendEmailForgotPassword() {
   return (
     <PageSuccess 
       title="Redefinição enviada"
-      description='Boa, agora é só chegar o email que foi enviado para você redefinir sua senha e aproveitar os estudos.'
+      description='Boa, agora é só checar o email que foi enviado para você redefinir sua senha e aproveitar os estudos.'
       buttonLabel="Voltar ao login"
       buttonRoute="/login"
     />
