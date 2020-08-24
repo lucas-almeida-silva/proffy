@@ -6,6 +6,7 @@ export interface UserProps {
   first_name: string;
   last_name: string;
   email: string;
+  avatar: string;
 }
 
 interface AuthContextData {
@@ -43,13 +44,14 @@ export const AuthProvider: React.FC = ({ children }) => {
         password
       });
 
+      console.log(response.data.userInfo);
       setUser(response.data.userInfo);
+      console.log(user);
 
       api.defaults.headers['Authorization'] = `Bearer ${response.data.token}`;
 
       localStorage.setItem('@proffy:token', response.data.token);
-      localStorage.setItem('@proffy:user', JSON.stringify(response.data.userInfo));
-      
+      localStorage.setItem('@proffy:user', JSON.stringify(response.data.userInfo));      
     } catch(err) {
       toast.error(err.response.data.error ? err.response.data.error : 'Ocorreu um erro ao fazer o login');
     }   

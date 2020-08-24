@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import React, { Component } from 'react';
+import { BrowserRouter, Redirect, RouteProps, Switch } from 'react-router-dom';
 
 import { useAuth } from '../contexts/auth';
 
@@ -11,6 +11,8 @@ import Register from '../pages/Register';
 import SuccessRegister from '../pages/SuccessRegister';
 import ForgotPassword from '../pages/ForgotPassword';
 import SuccessSendEmailForgotPassword from '../pages/SucessSendEmailForgotPassword';
+import ResetPassword from '../pages/ResetPassword';
+import SuccessResetPassword from '../pages/SuccessResetPassword';
 import TeacherList from '../pages/TeacherList';
 import TeacherForm from '../pages/TeacherForm';
 
@@ -27,12 +29,14 @@ function Routes() {
 
   return (
     <BrowserRouter>
-      <Route path='/' component={Landing} exact isPrivate/> 
-      <Route path='/login' component={Login}/> 
+      <Route path='/' component={Landing} exact isPrivate /> 
+      <Route path='/login' component={Login} /> 
       <Route path='/register' component={Register} exact/> 
       <Route path='/register/success' component={SuccessRegister} />
       <Route path='/forgot-password' component={ForgotPassword} exact/>
       <Route path='/forgot-password/success' component={SuccessSendEmailForgotPassword} />
+      <Route path='/reset-password/:token' component={ResetPassword} exact />
+      <Route path='/resetpassword/success' component={SuccessResetPassword} exact />
       <Route path='/study' component={TeacherList} isPrivate/>
       <Route path='/give-classes' component={TeacherForm} isPrivate />
     </BrowserRouter>
