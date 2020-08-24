@@ -75,7 +75,6 @@ export default class AuthController {
       return response.status(200).send({message: 'Email successfully sent'})
 
     } catch(err) {
-      console.log(err);
       return response.status(400).send({error: 'Error on forgot password, try again'});
     }
   }

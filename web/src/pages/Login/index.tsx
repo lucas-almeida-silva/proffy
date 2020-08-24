@@ -43,7 +43,7 @@ function Login() {
             <InputAuthentication 
               type="password" 
               label="Senha" 
-              name="senha" 
+              name="password" 
               value={password} 
               onChange={(e) => setPassword(e.target.value)} 
             />

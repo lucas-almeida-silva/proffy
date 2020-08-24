@@ -13,15 +13,18 @@ function ForgotPassword() {
   const [email, setEmail] = useState('');
   const history = useHistory();
 
-  function handleSendEmail(e: FormEvent) {
+  async function handleSendEmail(e: FormEvent) {
     e.preventDefault();
-    api.post('forgot-password', {
-      email
-    }).then(() => {
+
+    try {
+      await api.post('forgot-password', {
+        email
+      });
+
       history.push('forgot-password/success');
-    }).catch(() => {
-      toast('Ocorreu um erro');
-    })
+    } catch(err) {
+      toast.error('Ocorreu um erro ao enviar o e-mail');
+    }
   }
 
   return (
