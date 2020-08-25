@@ -23,6 +23,7 @@ export default class AuthController {
       const token = generateToken({id: user[0].id});
       
       const userInfo = {
+        id: user[0].id,
         first_name: user[0].first_name,
         last_name: user[0].last_name,
         email: user[0].email,

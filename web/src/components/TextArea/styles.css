@@ -6,7 +6,18 @@
   margin-top: 1.4rem;
 }
 
-.textarea-block label {
+.textarea-block .text-label {
+  display: flex;  
+  align-items: center;
+}
+
+.textarea-block .text-label span {
+  font-size: 1.2rem;
+  color: var(--color-text-input-obs);
+  margin-left: 1.2rem;
+}
+
+.textarea-block .text-label label {
   font-size: 1.4rem;
 }
 

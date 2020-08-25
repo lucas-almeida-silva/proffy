@@ -5,7 +5,7 @@
 
 #page-teacher-form .page-header .header-content {
   margin-bottom: 6.4rem;
-}
+} 
 
 #page-teacher-form main {
   background: var(--color-box-base);
@@ -52,16 +52,71 @@
 }
 
 #page-teacher-form main fieldset .input-block + .textarea-block,
-#page-teacher-form main fieldset .select-block + .input-block,
-#page-teacher-form main fieldset .schedule-item + .schedule-item {
+#page-teacher-form main fieldset .select-block + .input-block {
   margin-top: 2.4rem;
 }
 
-#page-teacher-form main fieldset .schedule-item + .schedule-item {
-  margin-top: 2.4rem !important;
-  border-top: 2px solid var(--color-line-in-white);
-  padding-top: 2rem;
+#page-teacher-form main fieldset .proffy-contact {
+  margin-bottom: 1.6rem;
 }
+
+#page-teacher-form main fieldset .proffy-contact .proffy-identity{
+  display: flex;
+  align-items: center;
+  margin-bottom: 2.2rem;
+}
+
+#page-teacher-form main fieldset .proffy-contact .proffy-identity img {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+}
+
+#page-teacher-form main fieldset .proffy-contact .proffy-identity strong {
+  font: 700 2rem Archivo;
+  display: block;
+  color: var(--color-text-title);
+  margin-left: 2.4rem;
+}
+
+#page-teacher-form main fieldset .schedule-item + .schedule-item {
+  margin-top: 3.2rem;
+}
+
+#page-teacher-form main fieldset .schedule-item .remove-schedule-item {
+  display: flex;
+  flex-direction: row;
+  margin-top: 2.2rem;
+}
+
+#page-teacher-form main fieldset .schedule-item .remove-schedule-item button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font: 600 1.4rem Archivo;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--color-button-danger);
+}
+
+#page-teacher-form main fieldset .schedule-item .remove-schedule-item:before,
+#page-teacher-form main fieldset .schedule-item .remove-schedule-item:after {
+  content: "";
+  flex: 1;
+  margin: auto;
+  height: 1px;
+  background-color: var(--color-line-in-white);
+}
+
+#page-teacher-form main fieldset .schedule-item .remove-schedule-item:before {
+  margin-right: 1rem; 
+}
+
+#page-teacher-form main fieldset .schedule-item .remove-schedule-item:after {
+  margin-left: 1rem;
+} 
 
 #page-teacher-form main label {
   color: var(--color-text-component);
@@ -114,6 +169,10 @@
   }
 
   #page-teacher-form .page-header .header-content {
+    padding-bottom: 70px;
+  }
+
+  #page-teacher-form .page-header .header-content {
     margin-bottom: 0;
   }
 
@@ -121,13 +180,44 @@
     padding: 0 6.4rem;
   }
 
-  #page-teacher-form main .schedule-item {
+  #page-teacher-form main fieldset .proffy-contact {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  #page-teacher-form main fieldset .proffy-contact .input-block{
+    width: 40%;
+  }
+
+  #page-teacher-form main fieldset .proffy-contact .proffy-identity {
+    margin-bottom: 0;
+  }
+  
+  #page-teacher-form main fieldset .proffy-contact,
+  #page-teacher-form main fieldset .subject-cost {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  #page-teacher-form main fieldset .subject-cost .select-block {
+    margin-right: 2.6rem;
+    width: 65%;
+  }
+
+  #page-teacher-form main fieldset .subject-cost .input-block {
+    margin-top: 0;
+    width: 35%;
+  }
+
+  #page-teacher-form main .schedule-item .schedule-item-info {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: 3fr 1fr 1fr;
     column-gap: 1.6rem;
   }
 
-  #page-teacher-form main .schedule-item .input-block {
+  #page-teacher-form main .schedule-item .schedule-item-info .input-block {
     margin-top: 0 !important;
   }
 

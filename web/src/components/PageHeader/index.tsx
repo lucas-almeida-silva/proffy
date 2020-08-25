@@ -1,30 +1,33 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-import logoImg from '../../assets/images/logo.svg';
-import backIcon from '../../assets/images/icons/back.svg';
+import TopBarHeader from '../TopBarHeader';
 
 import './styles.css';
 
 interface PageHeaderProps {
+  topBarTitle: string;
   title: string;
   description?: string;
+  additionalDescription: {icon: string, text: string}
 }
 
 const PageHeader: React.FC<PageHeaderProps> = (props) => {
   return (
     <header className="page-header">
-      <div className="top-bar-container">
-        <Link to="/">
-          <img src={backIcon} alt="Voltar" />
-        </Link>
-        <img src={logoImg} alt="Proffy" />
-      </div>
+      <TopBarHeader title={props.topBarTitle}/>
 
       <div className="header-content">
-        <strong>{props.title}</strong>
-        {props.description && <p>{props.description}</p>}
-        {props.children}
+        <div className="header-content-text">
+          <div className="main-text">
+            <strong>{props.title}</strong>
+            {props.description && <p>{props.description}</p>}
+          </div>
+          <div className="additional-description">
+            <img src={props.additionalDescription.icon} alt="Ícone descrição adicional"></img>
+            <span>{props.additionalDescription.text}</span>
+          </div> 
+        </div> 
+        {props.children}         
       </div>
     </header>
   );

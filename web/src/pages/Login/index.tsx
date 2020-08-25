@@ -53,8 +53,7 @@ function Login() {
             <CheckBox 
               name="remember-me" 
               label="Lembrar-me"
-              // {...(keepConnected && {checked: true})} 
-              // onClick={() => setKeepConnected(!keepConnected)}
+              onClick={() => setKeepConnected(!keepConnected)}
             />
             <Link to="/forgot-password">
               Esqueci minha senha

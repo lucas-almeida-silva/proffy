@@ -47,6 +47,14 @@
     max-width: 100%;
   }
 
+  #page-teacher-list .page-header {
+    height: 300px;
+  }
+
+  #page-teacher-list .page-header .header-content .header-content-text {
+    align-items: center;
+  }
+
   #search-teachers {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -70,4 +78,5 @@
     max-width: 740px;
     margin: 0 auto;
   }
+
 }

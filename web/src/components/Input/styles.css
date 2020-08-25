@@ -32,3 +32,14 @@
   right: 1.6rem;
   bottom: 0;
 }
+
+.input-block .input-with-prefix {
+  padding-left: 4.6rem;
+}
+
+.input-block .input-prefix {
+  position: absolute;
+  bottom: 15px;
+  left: 2rem;
+}
+

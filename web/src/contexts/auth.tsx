@@ -3,6 +3,7 @@ import api from '../services/api';
 import { toast } from 'react-toastify';
 
 export interface UserProps {
+  id: number;
   first_name: string;
   last_name: string;
   email: string;

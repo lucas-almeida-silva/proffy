@@ -10,6 +10,8 @@ import { toast } from 'react-toastify';
 
 import api from '../../services/api';
 
+import happyProffyEmoji from '../../assets/images/icons/emoji-happy-proffy.svg';
+
 import './styles.css';
 
 function TeacherList() {
@@ -46,7 +48,10 @@ function TeacherList() {
 
   return (
     <div id="page-teacher-list" className="container">
-      <PageHeader title="Estes são os proffys disponíveis.">
+      <PageHeader 
+        topBarTitle='Estudar' 
+        title='Estes são os proffys disponíveis.'
+        additionalDescription={{icon: happyProffyEmoji, text:'Nós temos 32 professores'}}>
         <form id="search-teachers" onSubmit={searchTeachers}>
           <Select 
             name="subject" 
