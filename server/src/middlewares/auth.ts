@@ -16,7 +16,7 @@ export default async (request: Request, response: Response, next: NextFunction) 
     return response.status(401).send({error: 'Token error'});
   }
 
-  const [scheme, token] = authHeader.split(" ");
+  const [scheme, token] = parts;
 
   if(!/^Bearer$/i.test(scheme)) {
     return response.status(401).send({error: 'Token malformatted'});

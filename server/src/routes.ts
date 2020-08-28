@@ -20,6 +20,9 @@ routes.post('/reset-password', authController.resetPassword);
 
 routes.use(authMiddleware);
 
+routes.get('/users/:id', usersController.getById);
+routes.put('/users', usersController.put);
+
 routes.get('/classes', classesConstroller.index);
 routes.post('/classes', classesConstroller.create);
 
