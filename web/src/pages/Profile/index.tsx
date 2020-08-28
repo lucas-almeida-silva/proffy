@@ -109,7 +109,10 @@ function Profile() {
       <header>   
         <TopBarHeader title="Meu perfil"/>
         <div className="user-identity">
-          <img src={avatar || avatarDefaultImg} alt="Avatar usuário"/>
+          <img 
+            src={(avatar.endsWith(".jpg") || avatar.endsWith(".png")) ? avatar : avatarDefaultImg} 
+            alt="Avatar usuário"
+          />
           <strong>{`${user?.first_name} ${user?.last_name}`}</strong>
           <span>{subject}</span>
         </div>  
