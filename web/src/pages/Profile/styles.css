@@ -1,0 +1,255 @@
+#page-profile {
+  width: 100vw;
+  height: 100vh;
+}
+
+#page-profile header {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-primary);
+  height: 40rem;
+}
+
+#page-profile header .user-identity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 3.2rem 0;
+}
+
+#page-profile header .user-identity img {
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+}
+
+#page-profile header .user-identity strong {
+  font: 700 3.6rem Archivo;
+  color: var(--color-title-in-primary);
+  margin-top: 1.2rem;
+} 
+
+#page-profile header .user-identity span {
+  font: 400 2.2rem Poppins;
+  color: var(--color-text-in-primary);
+} 
+
+#page-profile main {
+  background: var(--color-box-base);
+  width: 100%;
+  max-width: 74rem;
+  border-radius: 0.8rem;
+  margin: -3.6rem auto 3.6rem;
+  padding-top: 6.4rem;
+  overflow: hidden;
+}
+
+#page-profile main fieldset {
+  border: 0;
+  padding: 0 2.4rem;
+}
+
+#page-profile main fieldset + fieldset {
+  margin-top: 6.4rem;
+}
+
+#page-profile main fieldset legend {
+  font: 700 2.4rem Archivo;
+  color: var(--color-text-title);
+  margin-bottom: 2.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-bottom: 1.6rem;
+  border-bottom: 1px solid var(--color-line-in-white);
+}
+
+#page-profile main fieldset legend button {
+  background: none;
+  border: 0;
+  color: var(--color-primary);
+  font: 700 1.6rem Archivo;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+#page-profile main fieldset legend button:hover {
+  color: var(--color-primary-dark);
+}
+
+#page-profile main fieldset .input-block + .input-block
+#page-profile main fieldset .textarea-block + .input-block,
+#page-profile main fieldset .select-block + .input-block {
+  margin-top: 2.4rem;
+}
+
+#page-profile main fieldset .textarea-block {
+  margin-top: 2.4rem;
+}
+
+#page-profile main fieldset .proffy-name {
+  margin-top: 2.4rem;
+}
+
+
+#page-profile main fieldset .proffy-contact {
+  margin-top: 2.4rem;
+}
+
+#page-profile main fieldset .schedule-item + .schedule-item {
+  margin-top: 3.2rem;
+}
+
+#page-profile main fieldset .schedule-item .remove-schedule-item {
+  display: flex;
+  flex-direction: row;
+  margin-top: 2.2rem;
+}
+
+#page-profile main fieldset .schedule-item .remove-schedule-item button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 600 1.4rem Archivo;
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  color: var(--color-button-danger);
+}
+
+#page-profile main fieldset .schedule-item .remove-schedule-item:before,
+#page-profile main fieldset .schedule-item .remove-schedule-item:after {
+  content: "";
+  flex: 1;
+  margin: auto;
+  height: 1px;
+  background-color: var(--color-line-in-white);
+}
+
+#page-profile main fieldset .schedule-item .remove-schedule-item:before {
+  margin-right: 1rem; 
+}
+
+#page-profile main fieldset .schedule-item .remove-schedule-item:after {
+  margin-left: 1rem;
+} 
+
+#page-profile main footer {
+  padding: 4rem 2.4rem;
+  background: var(--color-box-footer);
+  border-top: 1px solid var(--color-line-in-white);
+  margin-top: 6.4rem;
+}
+
+#page-profile main footer p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  line-height: 2.4rem;
+  color: var(--color-text-component);
+}
+
+#page-profile main footer p img {
+  margin-right: 2rem;
+}
+
+#page-profile main footer button {
+  width: 100%;
+  height: 5.6rem;
+  background: var(--color-secundary);
+  color: var(--color-button-text);
+  border: 0;
+  outline: none;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  font: 700 1.6rem Archivo;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+  margin-top: 3.2rem;
+}
+
+#page-profile main footer button:hover {
+  background: var(--color-secundary-dark);
+}
+
+@media (min-width: 700px) {
+  #page-profile {
+    max-width: 100vw;
+  }
+
+  #page-profile main fieldset {
+    padding: 0 6.4rem;
+  }
+
+  #page-profile main fieldset .proffy-name,
+  #page-profile main fieldset .proffy-contact {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.6rem;
+  }
+
+  #page-profile main fieldset .proffy-name .input-block,
+  #page-profile main fieldset .proffy-contact .input-block {
+    margin-top: 0;
+  }
+
+  #page-profile main fieldset .proffy-name .input-block {
+    width: 47%;
+  }
+
+  #page-profile main fieldset .proffy-contact .input-block:first-child{
+    width: 65%;
+  }
+
+  #page-profile main fieldset .proffy-contact .input-block:last-child{
+    margin-left: 3.6rem;
+    width: 35%;
+  }
+
+  #page-profile main fieldset .subject-cost {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  #page-profile main fieldset .subject-cost .select-block {
+    width: 65%;
+  }
+
+  #page-profile main fieldset .subject-cost .input-block {
+    margin-top: 0;
+    margin-left: 3.6rem;
+    width: 35%;
+  }
+
+  #page-profile main .schedule-item .schedule-item-info {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr;
+    column-gap: 1.6rem;
+  }
+
+  #page-profile main .schedule-item .schedule-item-info .input-block {
+    margin-top: 0;
+  }
+
+  #page-profile main footer {
+    padding: 4.0rem 6.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  #page-profile main footer button {
+    width: 20rem;
+    margin-top: 0;
+  }
+
+}

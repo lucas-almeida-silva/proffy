@@ -37,10 +37,12 @@ function Landing() {
       <div className="page-landing-top">
         <div className="page-landing-top-content">
         <header>
-          <div className="user-info">
-            <img src={user?.avatar || avatarDefaultImg} alt="Avatar usuário" />
-            <span>{`${user?.first_name} ${user?.last_name}`}</span>
-          </div>
+          {/* <div className="user-info"> */}
+            <Link to="/profile" className="user-info">
+              <img src={user?.avatar || avatarDefaultImg} alt="Avatar usuário" />
+              <span>{`${user?.first_name} ${user?.last_name}`}</span>
+            </Link>
+          {/* </div> */}
               
           <button onClick={handleSignOut}>
             <img src={signOutIcon} alt="Logout" />

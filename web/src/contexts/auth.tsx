@@ -45,9 +45,7 @@ export const AuthProvider: React.FC = ({ children }) => {
         password
       });
 
-      console.log(response.data.userInfo);
       setUser(response.data.userInfo);
-      console.log(user);
 
       api.defaults.headers['Authorization'] = `Bearer ${response.data.token}`;
 

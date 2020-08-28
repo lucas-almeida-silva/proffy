@@ -15,6 +15,7 @@ import ResetPassword from '../pages/ResetPassword';
 import SuccessResetPassword from '../pages/SuccessResetPassword';
 import TeacherList from '../pages/TeacherList';
 import TeacherForm from '../pages/TeacherForm';
+import Profile from '../pages/Profile';
 
 import Route from './route';
 
@@ -39,6 +40,7 @@ function Routes() {
       <Route path='/resetpassword/success' component={SuccessResetPassword} exact />
       <Route path='/study' component={TeacherList} isPrivate/>
       <Route path='/give-classes' component={TeacherForm} isPrivate />
+      <Route path='/profile' component={Profile} isPrivate />
     </BrowserRouter>
   );
 }

@@ -1,9 +1,9 @@
-.page-header .top-bar-container {
+.top-bar-container {
   background: var(--color-primary-dark);
   width: 100%;
 }
 
-.page-header .top-bar-container .top-bar-content {
+.top-bar-container .top-bar-content {
   width: 90%;
   margin: 0 auto;
   display: flex;
@@ -13,20 +13,20 @@
   padding: 1.6rem 0;
 }
 
-.page-header .top-bar-container .top-bar-content a {
+.top-bar-container .top-bar-content a {
   height: 3.2rem;
   transition: opacity 0.2s;
 }
 
-.page-header .top-bar-container .top-bar-content a:hover {
+.top-bar-container .top-bar-content a:hover {
   opacity: 0.6;
 }
 
-.page-header .top-bar-container .top-bar-content span {
+.top-bar-container .top-bar-content span {
   font: 500 1.6rem Archivo;
 }
 
-.page-header .top-bar-container .top-bar-content > img {
+.top-bar-container .top-bar-content > img {
   height: 1.6rem;
 }
 
