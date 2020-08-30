@@ -21,14 +21,18 @@ export default class AuthController {
       }
 
       const token = generateToken({id: user[0].id});
+
+      const teacher = await db('teachers').where('user_id', user[0].id);
       
       const userInfo = {
-        id: user[0].id,
+        id: teacher.length ? teacher[0].id : user[0].id,
         first_name: user[0].first_name,
         last_name: user[0].last_name,
         email: user[0].email,
-        avatar: user[0].avatar
+        avatar: user[0].avatar,
+        role: teacher.length ? 'Teacher' : 'Student'
       }
+      
       return response.status(200).send({
         token,
         userInfo

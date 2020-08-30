@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
 import db from '../database/connection';
-import convertHourToMinutes from '../utils/convertHourToMinutes';
+import convertHourToMinutes, { convertMinutesToHours } from '../utils/convertHourToMinutes';
 
 interface ScheduleItem {
   week_day: number,
@@ -17,29 +17,62 @@ export default class ClassesController {
     const week_day = filters.week_day as string;
     const time = filters.time as string;
 
-    if(!subject || !week_day || !time) {
-      return response.status(400).send({
-        error: 'Missing filter to search classes'
-      });
+    let query = db('classes')
+      .join('teachers', 'classes.teacher_id', '=', 'teachers.id')
+      .join('users', 'teachers.user_id', '=', 'users.id');
+
+    if(subject) {
+      query = query.where('subject', subject)
     }
 
-    const timeInMinutes = convertHourToMinutes(time);
-
-    const classes = await db('classes')
-      .whereExists(function() {
+    if(week_day) {
+      query = query.whereExists(function() {
         this.select("class_schedule.*")
           .from('class_schedule')
           .whereRaw('`class_schedule`.`class_id` = `classes`.`id`')
           .whereRaw('`class_schedule`.`week_day` = ??', [Number(week_day)])
+      });
+    }
+
+    if(time) {
+      const timeInMinutes = convertHourToMinutes(time);
+
+      query = query.whereExists(function() {
+        this.select("class_schedule.*")
+          .from('class_schedule')
+          .whereRaw('`class_schedule`.`class_id` = `classes`.`id`')
           .whereRaw('`class_schedule`.`from` <= ??', [timeInMinutes])
           .whereRaw('`class_schedule`.`to` > ??', [timeInMinutes])
       })
-      .where('classes.subject', '=', subject)
-      .join('teachers', 'classes.teacher_id', '=', 'teachers.id')
-      .join('users', 'teachers.user_id', '=', 'users.id')
-      .select(['classes.*', 'users.first_name', 'users.last_name', 'teachers.bio', 'teachers.whatsapp']);
+    }
 
-    return response.send(classes);
+    query = query.select(['teachers.id', 'users.first_name', 'users.last_name', 'users.avatar',
+     'teachers.bio', 'teachers.whatsapp', 'classes.id as class_id', 'classes.subject', 'classes.cost']);
+
+    const classes = await query;
+    
+    const classes_schedules = classes.map(async c => {
+
+      const class_schedule = await db('class_schedule')
+        .where('class_id', c.class_id)
+        .select(['week_day', 'to', 'from'])
+        .orderBy("week_day");
+
+      return {
+        ...c,
+        schedule: class_schedule.map(schedule => {
+          return {
+            week_day: schedule.week_day,
+            from: convertMinutesToHours(schedule.from),
+            to: convertMinutesToHours(schedule.to),               
+          }
+        })
+      }                     
+    });
+
+    const availableTeachersClasses = await Promise.all(classes_schedules);
+   
+    return response.status(200).send({teachers: availableTeachersClasses, total: classes.length});
   }
   
   async create(request: Request, response: Response) {
