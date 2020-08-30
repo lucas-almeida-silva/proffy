@@ -42,6 +42,16 @@
   width: 90%;
 }
 
+#page-teacher-list .empty-result {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12rem;
+  font-size: 1.6rem;
+  line-height: 2.6rem;
+  color: var(--color-text-complement);
+}
+
 @media (min-width: 700px) {
   #page-teacher-list {
     max-width: 100%;
@@ -53,6 +63,10 @@
 
   #page-teacher-list .page-header .header-content .header-content-text {
     align-items: center;
+  }
+
+  #page-teacher-list .page-header .header-content {
+    max-width: 850px;
   }
 
   #search-teachers {
@@ -75,7 +89,7 @@
 
   #page-teacher-list main {
     padding: 3.2rem 0;
-    max-width: 740px;
+    max-width: 850px;
     margin: 0 auto;
   }
 

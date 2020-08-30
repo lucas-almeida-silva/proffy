@@ -1,10 +1,12 @@
 import React, { useState, useEffect, FormEvent } from 'react';
+import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import TopBarHeader from '../../components/TopBarHeader';
 import Input from '../../components/Input';
 import TextArea from '../../components/TextArea';
 import Select from '../../components/Select';
+import Loader from '../../components/Loader';
 
 import { useAuth } from '../../contexts/auth';
 
@@ -14,17 +16,17 @@ import avatarDefaultImg from '../../assets/images/avatar-default.png';
 import warningIcon from '../../assets/images/icons/warning.svg';
 
 import './styles.css';
-import Loader from '../../components/Loader';
 
 function Profile() {
-  const { user } = useAuth();
+  const { user, updateUserInfo } = useAuth();
 
-  const [loader, setLoader] = useState(false);
+  const [loader, setLoader] = useState(true);
+  const history = useHistory();
 
   const [first_name, setFirstName] = useState('');
   const [last_name, setLastName] = useState('');
   const [email, setEmail] = useState('');
-  const [avatar, setAvatar] = useState(user?.avatar || '');
+  const [avatar, setAvatar] = useState('');
   const [whatsapp, setWhatsapp] = useState('');
   const [bio, setBio] = useState('');
   const [subject, setSubject] = useState('');
@@ -34,20 +36,36 @@ function Profile() {
   ]);
 
   useEffect(() => {
-    api.get(`users/${user?.id}`)
-      .then(response => {
-        setFirstName(response.data.first_name)
-        setLastName(response.data.last_name)
-        setEmail(response.data.email)
-        setWhatsapp(response.data.whatsapp)
-        setBio(response.data.bio)
-        setSubject(response.data.subject)
-        setCost(response.data.cost);
-        setScheduleItems(response.data.schedule);
-      }).catch(() => {
+
+    async function getProfileInfo() {
+      const url = user?.role === 'Student' ? `users/${user?.id}` : `teachers/${user?.id}`
+
+      try {
+        const { data } = await api.get(url);
+        console.log(data);
+  
+        setFirstName(data.first_name)
+        setLastName(data.last_name)
+        setEmail(data.email);
+        setAvatar(data.avatar);
+
+        if(user?.role === 'Teacher') {
+          setWhatsapp(data.whatsapp);
+          setBio(data.bio);
+          setSubject(data.subject)
+          setCost(data.cost)
+          setScheduleItems(data.schedule);
+        }           
+      } catch(err) {
         toast.error('Ocorreu um erro ao buscar os dados do proffy');
-      });
-  }, []);
+      }
+      finally {
+        setLoader(false);
+      }      
+    }
+
+    getProfileInfo();
+  }, [user]);
 
   function addNewScheduleItem() {
     setScheduleItems([
@@ -74,26 +92,36 @@ function Profile() {
     setScheduleItems(updatedScheduleItems);
   }
 
-  async function handleUpdateProffyProfile(e: FormEvent) {
+  async function handleUpdateProfile(e: FormEvent) {
     e.preventDefault();
 
     setLoader(true);
 
-    try {
-      await api.put('users', {
-        id: user?.id,
-        first_name,
-        last_name,
-        email,
-        avatar,
+    const url = user?.role === 'Student' ? `users` : `teachers`
+    let body: any = {
+      id: user?.id,
+      first_name,
+      last_name,
+      email,
+      avatar
+    }
+
+    if(user?.role === 'Teacher') {
+      body = {
+        ...body,
         bio,
         whatsapp,
         subject,
         cost,
         schedule: scheduleItems
-      });
-
+      }
+    }
+    
+    try {
+      await api.put(url, body);
+      updateUserInfo({first_name, last_name, email, avatar});
       toast.success('Perfil atualizado com sucesso!');
+      history.push('/')
     } catch(err) {
       toast.error('Ocorreu um erro ao salvar os dados');
     }
@@ -110,16 +138,59 @@ function Profile() {
         <TopBarHeader title="Meu perfil"/>
         <div className="user-identity">
           <img 
-            src={(avatar.endsWith(".jpg") || avatar.endsWith(".png")) ? avatar : avatarDefaultImg} 
+            src={(avatar && (avatar.endsWith(".jpg") || avatar.endsWith(".png"))) ? avatar : avatarDefaultImg} 
             alt="Avatar usuário"
-          />
+          />       
           <strong>{`${user?.first_name} ${user?.last_name}`}</strong>
-          <span>{subject}</span>
+          {user?.role === 'Teacher' && <span>{subject}</span>}
         </div>  
       </header>
 
       <main>
-        <form onSubmit={handleUpdateProffyProfile}>
+        <form onSubmit={handleUpdateProfile}>
+          
+          {user?.role == 'Student' ? (
+          <>
+          <fieldset>
+            <legend>Seus dados</legend>
+
+              <div className="proffy-name">
+                <Input 
+                  name="first_name" 
+                  label="Nome" 
+                  value={first_name} 
+                  onChange={(e) => { setFirstName(e.target.value) }}
+                />
+                <Input 
+                  name="last_name" 
+                  label="Sobrenome" 
+                  value={last_name} 
+                  onChange={(e) => { setLastName(e.target.value) }}
+                />
+              </div>
+              
+              <Input 
+                name="email" 
+                label="Email" 
+                value={email} 
+                onChange={(e) => { setEmail(e.target.value) }}
+              />
+
+              <Input 
+                name="avatar"
+                label="Avatar"
+                value={avatar} 
+                onChange={(e) => { setAvatar(e.target.value) }} 
+              />
+              
+          </fieldset>
+
+          
+        </>
+          
+        ) :
+        (
+          <>
           <fieldset>
             <legend>Seus dados</legend>
 
@@ -261,21 +332,23 @@ function Profile() {
             })}
             
           </fieldset>
-
-          <footer>
-            <p>
-              <img src={warningIcon} alt="Aviso importante" />
-              Importante ! <br />
-              Preencha todos os dados
-            </p>
-            <button type="submit">
-              Atualizar perfil
-            </button>
-          </footer>
-
-        </form>
-      </main>
-    </div>
+        </>
+       )}
+      
+        <footer>
+          <p>
+            <img src={warningIcon} alt="Aviso importante" />
+            Importante ! <br />
+            Preencha todos os dados
+          </p>
+          <button type="submit">
+            Atualizar perfil
+          </button>
+        </footer>
+      </form>
+    </main>
+  </div>
+    
   );
 
 }

@@ -40,7 +40,7 @@
   width: 100%;
   max-width: 74rem;
   border-radius: 0.8rem;
-  margin: -3.6rem auto 3.6rem;
+  margin: -4rem auto 3.6rem;
   padding-top: 6.4rem;
   overflow: hidden;
 }
@@ -57,7 +57,7 @@
 #page-profile main fieldset legend {
   font: 700 2.4rem Archivo;
   color: var(--color-text-title);
-  margin-bottom: 2.4rem;
+  margin-bottom: 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -79,23 +79,9 @@
   color: var(--color-primary-dark);
 }
 
-#page-profile main fieldset .input-block + .input-block
-#page-profile main fieldset .textarea-block + .input-block,
-#page-profile main fieldset .select-block + .input-block {
-  margin-top: 2.4rem;
-}
-
+#page-profile main fieldset .input-block,
 #page-profile main fieldset .textarea-block {
-  margin-top: 2.4rem;
-}
-
-#page-profile main fieldset .proffy-name {
-  margin-top: 2.4rem;
-}
-
-
-#page-profile main fieldset .proffy-contact {
-  margin-top: 2.4rem;
+  margin-top: 1.4rem;
 }
 
 #page-profile main fieldset .schedule-item + .schedule-item {
@@ -192,12 +178,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 2.6rem;
   }
 
-  #page-profile main fieldset .proffy-name .input-block,
-  #page-profile main fieldset .proffy-contact .input-block {
-    margin-top: 0;
+  #page-profile main fieldset .input-block,
+  #page-profile main fieldset .textarea-block {
+    margin-top: 2.2rem;
   }
 
   #page-profile main fieldset .proffy-name .input-block {
