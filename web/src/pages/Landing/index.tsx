@@ -13,6 +13,7 @@ import signOutIcon from '../../assets/images/icons/logout.svg';
 import avatarDefaultImg from '../../assets/images/avatar-default.png';
 
 import api from '../../services/api';
+import ROLES from '../../utils/constants/roles';
 
 import './styles.css';
 
@@ -73,7 +74,7 @@ function Landing() {
                 Estudar
               </Link>
 
-              <Link to="/give-classes" className="give-classes">
+              <Link to={`${user?.role === ROLES.teacher ? '/profile' : '/give-classes'}`} className="give-classes">
                 <img src={giveClassesIcon} alt="Estudar"></img>
                 Dar aulas
               </Link>

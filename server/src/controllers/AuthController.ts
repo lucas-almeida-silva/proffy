@@ -4,6 +4,7 @@ import crypto from 'crypto';
 import db from '../database/connection';
 import generateToken from '../services/jwt';
 import mailer from '../config/mailer';
+import jwtConfig from '../config/jwtConfig';
 
 export default class AuthController {
   async login(request: Request, response: Response) {
@@ -20,8 +21,6 @@ export default class AuthController {
         return response.status(400).send({error: 'Invalid password'});
       }
 
-      const token = generateToken({id: user[0].id});
-
       const teacher = await db('teachers').where('user_id', user[0].id);
       
       const userInfo = {
@@ -34,7 +33,10 @@ export default class AuthController {
       }
       
       return response.status(200).send({
-        token,
+        token: {
+          value: generateToken({id: user[0].id}),
+          expiresIn: new Date().getTime() + jwtConfig.authOptions.expiresIn * 10000 
+        },
         userInfo
       });
     } catch(err) {

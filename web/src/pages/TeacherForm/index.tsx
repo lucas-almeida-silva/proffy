@@ -1,15 +1,17 @@
 import React, { useState, FormEvent } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useAuth } from '../../contexts/auth';
 
 import { toast } from 'react-toastify';
 
 import PageHeader from '../../components/PageHeader';
 import Input from '../../components/Input';
+import MaskedInput from '../../components/MaskedInput';
 import TextArea from '../../components/TextArea';
 import Select from '../../components/Select';
+import FormFooter from '../../components/FormFooter';
 import Loader from '../../components/Loader';
 
-import warningIcon from '../../assets/images/icons/warning.svg';
 import avatarDefaultImg from '../../assets/images/avatar-default.png';
 import rocketEmoji from '../../assets/images/icons/emoji-rocket.svg';
 
@@ -17,7 +19,6 @@ import api from '../../services/api';
 
 import './styles.css';
 import 'react-toastify/dist/ReactToastify.css';
-import { useAuth } from '../../contexts/auth';
 
 function TeacherForm() {
   const history = useHistory();
@@ -69,7 +70,7 @@ function TeacherForm() {
     setTimeout(() => {
       api.post('classes', {
         user_id: user?.id,
-        whatsapp,
+        whatsapp: whatsapp.replace(/[^0-9]+/g,''),
         bio,
         subject,
         cost: Number(cost),
@@ -87,6 +88,7 @@ function TeacherForm() {
 
   return (
     <div id="page-teacher-form" className="container">
+      {loader && <Loader /> }
       <PageHeader
         topBarTitle='Dar aulas' 
         title="Que incrível que você quer dar aulas." 
@@ -104,8 +106,9 @@ function TeacherForm() {
                   <strong>{`${user?.first_name} ${user?.last_name}`}</strong>
                 </div>
               
-                <Input 
+                <MaskedInput 
                   name="whatsapp"
+                  mask="(99) 99999-9999"
                   label="Whatsapp"
                   value={whatsapp} 
                   onChange={(e) => { setWhatsapp(e.target.value) }} 
@@ -215,20 +218,9 @@ function TeacherForm() {
             
           </fieldset>
 
-          <footer>
-            <p>
-              <img src={warningIcon} alt="Aviso importante" />
-              Importante ! <br />
-              Preencha todos os dados
-            </p>
-            <button type="submit">
-              Salvar cadastro
-            </button>
-          </footer>
+          <FormFooter buttonSubmitLabel="Salvar cadastro" />
         </form>
       </main>
-      {loader && <Loader /> }
-
     </div>
   )
 }

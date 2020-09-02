@@ -30,17 +30,25 @@ interface AuthContextData {
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
+  const TOKEN_KEY = '@proffy:token';
+  const USER_KEY = '@proffy:user';
+
   const [user, setUser] = useState<UserProps | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const storagedToken = localStorage.getItem('@proffy:token');
-    const storagedUser = localStorage.getItem('@proffy:user');
+    const storagedToken = localStorage.getItem(TOKEN_KEY);
+    const storagedUser = localStorage.getItem(USER_KEY);
       
     if(storagedUser && storagedToken) {
-      api.defaults.headers['Authorization'] = `Bearer ${storagedToken}`;
+      const token = JSON.parse(storagedToken);
+      const isExpiredToken = new Date().getTime() > Number(token.expiresIn);
 
-      setUser(JSON.parse(storagedUser));    
+      if(!isExpiredToken) {
+        api.defaults.headers['Authorization'] = `Bearer ${token.value}`;
+
+        setUser(JSON.parse(storagedUser)); 
+      }       
     }
 
     setLoading(false);
@@ -56,24 +64,25 @@ export const AuthProvider: React.FC = ({ children }) => {
 
       setUser(response.data.userInfo);
 
-      api.defaults.headers['Authorization'] = `Bearer ${response.data.token}`;
+      api.defaults.headers['Authorization'] = `Bearer ${response.data.token.value}`;
 
-      localStorage.setItem('@proffy:token', response.data.token);
-      localStorage.setItem('@proffy:user', JSON.stringify(response.data.userInfo));      
+      localStorage.setItem(TOKEN_KEY, JSON.stringify(response.data.token));
+      localStorage.setItem(USER_KEY, JSON.stringify(response.data.userInfo));      
     } catch(err) {
       toast.error(err.response.data.error ? err.response.data.error : 'Ocorreu um erro ao fazer o login');
     }   
   }
 
   function signOut() {
-    localStorage.removeItem('@proffy:token');
-    localStorage.removeItem('@proffy:user');
+    localStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem(USER_KEY);
     setUser(null);
   }
 
   function updateUserInfo(userInfo: UserPropsUpdate) {
-    setUser({...user, ...userInfo} as UserProps);
-    localStorage.setItem('@proffy:user', JSON.stringify(user));      
+    const newUserInfo = {...user, ...userInfo} as UserProps;
+    setUser(newUserInfo);
+    localStorage.setItem(USER_KEY, JSON.stringify(newUserInfo));      
   }
 
   return ( 

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Routes from './routes';
+import { ToastContainer } from 'react-toastify';
 import {AuthProvider} from './contexts/auth';
 
 import './assets/styles/global.css';
@@ -9,6 +10,7 @@ function App() {
   return (
     <AuthProvider>
       <Routes />
+      <ToastContainer autoClose={3500}/>
     </AuthProvider>
     
   );
