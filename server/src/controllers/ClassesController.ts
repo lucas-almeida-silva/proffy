@@ -117,7 +117,7 @@ export default class ClassesController {
     
       await trx.commit();
     
-      return response.status(201).send();
+      return response.status(201).send({ teacher_id });
     } catch(err) {
       trx.rollback();
       return response.status(400).send({

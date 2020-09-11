@@ -10,7 +10,7 @@ import Select from '../../components/Select';
 import FormFooter from '../../components/FormFooter';
 import Loader from '../../components/Loader';
 
-import { useAuth } from '../../contexts/auth';
+import { useAuth, UserProps } from '../../contexts/auth';
 
 import api from '../../services/api';
 import ROLES from '../../utils/constants/roles';
@@ -48,7 +48,7 @@ function Profile() {
         setFirstName(data.first_name)
         setLastName(data.last_name)
         setEmail(data.email);
-        setAvatar(data.avatar);
+        setAvatar(data.avatar || '');
 
         if(user?.role === ROLES.teacher) {
           setWhatsapp(data.whatsapp);
@@ -120,7 +120,7 @@ function Profile() {
     
     try {
       await api.put(url, body);
-      updateUserInfo({first_name, last_name, email, avatar});
+      updateUserInfo({first_name, last_name, email, avatar} as UserProps);
       toast.success('Perfil atualizado com sucesso!');
       history.goBack()
     } catch(err) {

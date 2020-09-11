@@ -11,20 +11,13 @@ export interface UserProps {
   role: string;
 }
 
-interface UserPropsUpdate {
-  first_name: string;
-  last_name: string;
-  email: string;
-  avatar: string;
-}
-
 interface AuthContextData {
   signed: boolean;
   user: UserProps | null;
   loading: boolean;
   signIn(email: string, senha: string): Promise<void>;
   signOut(): void;
-  updateUserInfo(userInfo: UserPropsUpdate): void;
+  updateUserInfo(userInfo: UserProps): void;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -79,7 +72,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     setUser(null);
   }
 
-  function updateUserInfo(userInfo: UserPropsUpdate) {
+  function updateUserInfo(userInfo: UserProps) {
     const newUserInfo = {...user, ...userInfo} as UserProps;
     setUser(newUserInfo);
     localStorage.setItem(USER_KEY, JSON.stringify(newUserInfo));      

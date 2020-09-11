@@ -93,7 +93,7 @@ function showTime(week_day: number) {
       <footer>
         <p>
           Preço/hora
-          <strong>{teacher.cost}</strong>
+          <strong>{teacher.cost.toLocaleString("pt-BR", {style: 'currency', currency: 'BRL'})}</strong>
         </p>
         <a 
           target="_blank" 

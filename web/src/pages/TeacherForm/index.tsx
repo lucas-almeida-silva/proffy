@@ -1,7 +1,6 @@
 import React, { useState, FormEvent } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useAuth } from '../../contexts/auth';
-
+import { useAuth, UserProps } from '../../contexts/auth';
 import { toast } from 'react-toastify';
 
 import PageHeader from '../../components/PageHeader';
@@ -16,16 +15,16 @@ import avatarDefaultImg from '../../assets/images/avatar-default.png';
 import rocketEmoji from '../../assets/images/icons/emoji-rocket.svg';
 
 import api from '../../services/api';
+import ROLES from '../../utils/constants/roles';
 
 import './styles.css';
-import 'react-toastify/dist/ReactToastify.css';
 
 function TeacherForm() {
   const history = useHistory();
 
   const [loader, setLoader] = useState(false);
 
-  const { user } = useAuth();
+  const { user, updateUserInfo } = useAuth();
 
   const [whatsapp, setWhatsapp] = useState('');
   const [bio, setBio] = useState('');
@@ -75,7 +74,8 @@ function TeacherForm() {
         subject,
         cost: Number(cost),
         schedule: scheduleItems
-      }).then(() => {
+      }).then((response) => {
+        updateUserInfo({ id: response.data.teacher_id, role: ROLES.teacher } as UserProps);
         toast.success('Cadastro realizado com sucesso!');
         history.push('/');
       }).catch(() => {

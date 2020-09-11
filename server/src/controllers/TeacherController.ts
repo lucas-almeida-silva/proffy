@@ -16,7 +16,7 @@ export default class TeachersController {
       const teacher = await db('teachers')
         .join('users', 'users.id', '=', 'teachers.user_id')
         .join('classes', 'classes.teacher_id', '=', 'teachers.id')
-        .where('users.id', '=', id)
+        .where('teachers.id', '=', id)
         .select(['users.first_name', 'users.last_name', 'users.email', 'users.avatar', 'teachers.bio',
           'teachers.whatsapp', 'classes.id as class_id', 'classes.subject', 'classes.cost',]);
       
@@ -66,32 +66,25 @@ export default class TeachersController {
 
     try {
 
-      const userExists = (await trx('users').where('id', id)).length;
+      const teacher = await trx('teachers').where('id', id);
 
-      if(!userExists) {
-        return response.status(400).send({error: 'User not found'});
+      if(!teacher.length) {
+        return response.status(400).send({error: 'Teacher not found'});
       }
 
-      const teacherExists = (await trx('teachers').where('user_id', id)).length;
-
-      if(!teacherExists) {
-        return response.status(400).send({error: 'The user is not a teacher'});
-      }
-
-      const emailExists = (await trx('users').where('email', email).whereNot('id', id)).length;
+      const emailExists = (await trx('users').where('email', email).whereNot('id', teacher[0].user_id)).length;
 
       if (emailExists) {
         return response.status(400).send({error: 'Email alredy in use'});
       }
 
-      await trx('users').where('id', id).update({
+      await trx('users').where('id', teacher[0].user_id).update({
         first_name,
         last_name,
         email,
         avatar
       });
 
-      const teacher = await trx('teachers').where('user_id', id);
       const teacher_id = teacher[0].id;
 
       await trx('teachers').where('id', teacher_id).update({
