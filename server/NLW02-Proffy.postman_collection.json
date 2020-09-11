@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Lucas Almeida\",\r\n    \"avatar\": \"https://avatars2.githubusercontent.com/u/52322473?s=460&u=3a4051c3f2b67372942f93c4b09ea28e5fe08a44&v=4\",\r\n    \"whatsapp\": \"11960766270\",\r\n    \"bio\": \"O contador de histórias\",\r\n    \"subject\": \"História\",\r\n    \"cost\": 80,\r\n    \"schedule\": [\r\n        {\"week_day\": 1, \"from\": \"08:00\", \"to\": \"12:00\"},\r\n        {\"week_day\": 3, \"from\": \"10:00\", \"to\": \"18:00\"},\r\n        {\"week_day\": 4, \"from\": \"08:00\", \"to\": \"12:00\"}\r\n    ]\r\n}",
+							"raw": "{\r\n    \"user_id\": 1,\r\n    \"whatsapp\": \"11960766270\",\r\n    \"bio\": \"O contador de histórias\",\r\n    \"subject\": \"História\",\r\n    \"cost\": 80,\r\n    \"schedule\": [\r\n        {\"week_day\": 1, \"from\": \"08:00\", \"to\": \"12:00\"},\r\n        {\"week_day\": 3, \"from\": \"10:00\", \"to\": \"18:00\"},\r\n        {\"week_day\": 4, \"from\": \"08:00\", \"to\": \"12:00\"}\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -38,11 +38,24 @@
 				},
 				{
 					"name": "List Classes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTk5ODAwMzU1LCJleHAiOjE1OTk4ODY3NTV9.ghzRtV-kqDLXIHBS7SogVTawOUprUVbuWHVsoCgvEATOintdiZ3uzidV0ZZ3EG8N9IlTD1pkNIaTJbXEFIr8OvbQvig3Vg-xyMkmtgKZ_ck3BNpqTFt0IXeEz-sQF-K-WM-C7CrgoSrGm36MNO7hYEbYwWUUAdqSl8RU4sxSD1B9xr9cimIccXrDF3z1aIw1aCPtZ3MOcC-v1sKF4GZ2BvUqER7bSzwgNqyk0w5JvpgRYrGPtGjuFeHqvlgd53KtyK5YChxBpISBkduXEzgo23JrEhlAKgFHnQd96xhFBcGORqFTck6sFmfpUj0lorwVyNPp92Dlsn0BwdOuRRRI5w",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
 						"url": {
-							"raw": "http://localhost:3333/classes?week_day=1&subject=História&time=9:00",
+							"raw": "http://localhost:3333/classes?week_day=1&subject=Química&time=08:00",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -58,11 +71,16 @@
 								},
 								{
 									"key": "subject",
-									"value": "História"
+									"value": "Química"
 								},
 								{
 									"key": "time",
-									"value": "9:00"
+									"value": "08:00"
+								},
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
 								}
 							]
 						}
@@ -79,10 +97,16 @@
 					"name": "Create Connection",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTk3NjI4MzY0LCJleHAiOjE1OTc3MTQ3NjR9.dL2TsrYwZuThaR7YZLPLCbPnMHRAIGhuoQePjNuXHgKvXLCO1zfaAfN9AgMz_x5AoO_ow25Kcq6htY5jHYC96M3ei3umBieEMzIbvo7fIf4XXBcetKyK00z84V-SdUugNsbryg0v17ucGm4y69-XZsz49Ub88MXfztm6UCDYrsIAGLeXJdKGZgXBntq2QO4dXn0c3npRog0KQuPxn1cunvpUJSOGHovTI7P5gg9dymhAD7AF-pn8T2WDFUFp5zNLETR036amVhShmgu1rrWqFNTkVU9uOjiGmMrGTZplkku6L-_Vmr9NaLjkLjWfzO4-JxiJWuAdSGL4qyqaozar8w",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"user_id\": 1\r\n}",
+							"raw": "{\r\n    \"teacher_id\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -106,8 +130,17 @@
 				{
 					"name": "List Total Connections",
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTk5ODAwMzU1LCJleHAiOjE1OTk4ODY3NTV9.ghzRtV-kqDLXIHBS7SogVTawOUprUVbuWHVsoCgvEATOintdiZ3uzidV0ZZ3EG8N9IlTD1pkNIaTJbXEFIr8OvbQvig3Vg-xyMkmtgKZ_ck3BNpqTFt0IXeEz-sQF-K-WM-C7CrgoSrGm36MNO7hYEbYwWUUAdqSl8RU4sxSD1B9xr9cimIccXrDF3z1aIw1aCPtZ3MOcC-v1sKF4GZ2BvUqER7bSzwgNqyk0w5JvpgRYrGPtGjuFeHqvlgd53KtyK5YChxBpISBkduXEzgo23JrEhlAKgFHnQd96xhFBcGORqFTck6sFmfpUj0lorwVyNPp92Dlsn0BwdOuRRRI5w",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://localhost:3333/connections",
 							"protocol": "http",
@@ -117,6 +150,263 @@
 							"port": "3333",
 							"path": [
 								"connections"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\": \"Lucas\",\r\n    \"last_name\": \"Silva\",\r\n    \"email\": \"lucas.silva@gmail.com\",\r\n    \"password\": \"@Senha123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTk4NzU3MzMyLCJleHAiOjE1OTg4NDM3MzJ9.ZscNmeR_eMZEtESYOx_AusU4xx3sLJHUHi6lveGVN5dMuQgIu1jdPk6NOtYEZBwPuAOMSVq7mBC6A4BF3bxg6PUi6sBwV-r9Vwvr-MenRtjvqAGWkL7OZKjX4sxgRzjo-vLm8Dy1MFirpnGYUOJHtruXenkRgR2tFaLS3LiU_LMwL3rOrGK7y4PT7vDqkwkpzsvni4tXVxGGa-U90bG6kqsUStya6j_WYkrlTXwxSvY0btUgWVT_AnGiH3VBbiNy6NtJdjTqqXHQ7fhaD_Jm3Fxa386bJVXp8Ulp_OhGvg4L64OCzZO-zMF9ozlhAfy0ldGcgMh_m8oDApvrkt0ZMw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3333/users/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"users",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTk4NzU3MzMyLCJleHAiOjE1OTg4NDM3MzJ9.ZscNmeR_eMZEtESYOx_AusU4xx3sLJHUHi6lveGVN5dMuQgIu1jdPk6NOtYEZBwPuAOMSVq7mBC6A4BF3bxg6PUi6sBwV-r9Vwvr-MenRtjvqAGWkL7OZKjX4sxgRzjo-vLm8Dy1MFirpnGYUOJHtruXenkRgR2tFaLS3LiU_LMwL3rOrGK7y4PT7vDqkwkpzsvni4tXVxGGa-U90bG6kqsUStya6j_WYkrlTXwxSvY0btUgWVT_AnGiH3VBbiNy6NtJdjTqqXHQ7fhaD_Jm3Fxa386bJVXp8Ulp_OhGvg4L64OCzZO-zMF9ozlhAfy0ldGcgMh_m8oDApvrkt0ZMw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 4,\r\n    \"first_name\": \"Antônio\",\r\n    \"last_name\": \"Silva\",\r\n    \"email\": \"antonio@gmail.com\",\r\n    \"avatar\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTK9Cq344s9Uxkppwhy-433S7NCIc_nej3cpw&usqp=CAU\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"lucas.silva@gmail.com\",\r\n    \"password\": \"@Senha123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send email to reset password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"lucas.silva@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/forgot-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"7824fecba0554b9fa97dfd4f5bc217169e080898\",\r\n    \"password\": \"@Senha123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/reset-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"reset-password"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Teacher",
+			"item": [
+				{
+					"name": "Get Teacher Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTk4NzU3MzMyLCJleHAiOjE1OTg4NDM3MzJ9.ZscNmeR_eMZEtESYOx_AusU4xx3sLJHUHi6lveGVN5dMuQgIu1jdPk6NOtYEZBwPuAOMSVq7mBC6A4BF3bxg6PUi6sBwV-r9Vwvr-MenRtjvqAGWkL7OZKjX4sxgRzjo-vLm8Dy1MFirpnGYUOJHtruXenkRgR2tFaLS3LiU_LMwL3rOrGK7y4PT7vDqkwkpzsvni4tXVxGGa-U90bG6kqsUStya6j_WYkrlTXwxSvY0btUgWVT_AnGiH3VBbiNy6NtJdjTqqXHQ7fhaD_Jm3Fxa386bJVXp8Ulp_OhGvg4L64OCzZO-zMF9ozlhAfy0ldGcgMh_m8oDApvrkt0ZMw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3333/teachers/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"teachers",
+								"1"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTk4NzU3MzMyLCJleHAiOjE1OTg4NDM3MzJ9.ZscNmeR_eMZEtESYOx_AusU4xx3sLJHUHi6lveGVN5dMuQgIu1jdPk6NOtYEZBwPuAOMSVq7mBC6A4BF3bxg6PUi6sBwV-r9Vwvr-MenRtjvqAGWkL7OZKjX4sxgRzjo-vLm8Dy1MFirpnGYUOJHtruXenkRgR2tFaLS3LiU_LMwL3rOrGK7y4PT7vDqkwkpzsvni4tXVxGGa-U90bG6kqsUStya6j_WYkrlTXwxSvY0btUgWVT_AnGiH3VBbiNy6NtJdjTqqXHQ7fhaD_Jm3Fxa386bJVXp8Ulp_OhGvg4L64OCzZO-zMF9ozlhAfy0ldGcgMh_m8oDApvrkt0ZMw",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Teacher Profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTk4NzU3MzMyLCJleHAiOjE1OTg4NDM3MzJ9.ZscNmeR_eMZEtESYOx_AusU4xx3sLJHUHi6lveGVN5dMuQgIu1jdPk6NOtYEZBwPuAOMSVq7mBC6A4BF3bxg6PUi6sBwV-r9Vwvr-MenRtjvqAGWkL7OZKjX4sxgRzjo-vLm8Dy1MFirpnGYUOJHtruXenkRgR2tFaLS3LiU_LMwL3rOrGK7y4PT7vDqkwkpzsvni4tXVxGGa-U90bG6kqsUStya6j_WYkrlTXwxSvY0btUgWVT_AnGiH3VBbiNy6NtJdjTqqXHQ7fhaD_Jm3Fxa386bJVXp8Ulp_OhGvg4L64OCzZO-zMF9ozlhAfy0ldGcgMh_m8oDApvrkt0ZMw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"first_name\": \"Lucas\",\r\n    \"last_name\": \"Silva\",\r\n    \"email\": \"lucas.silva@gmail.com\",\r\n    \"bio\": \"O contador de histórias\",\r\n    \"whatsapp\": \"11960766270\",\r\n    \"subject\": \"História\",\r\n    \"cost\": 90,\r\n    \"schedule\": [\r\n        {\r\n            \"week_day\": 1,\r\n            \"from\": \"08:00\",\r\n            \"to\": \"12:00\"\r\n        },\r\n        {\r\n            \"week_day\": 3,\r\n            \"from\": \"10:00\",\r\n            \"to\": \"18:00\"\r\n        },\r\n        {\r\n            \"week_day\": 4,\r\n            \"from\": \"10:00\",\r\n            \"to\": \"18:00\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3333/teachers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3333",
+							"path": [
+								"teachers"
 							]
 						}
 					},
